@@ -7,13 +7,14 @@ from utils.models import BaseModel
 from utils.models import DateModel
 
 from .utils import check_user_data
+from .utils import STATUS_ERROR
 
 class AccountManager(BaseUserManager):
     def create_user(self, email, first_name, last_name, phone_number, password=None, **extra_fields):
 
         data = check_user_data(email, first_name, last_name, phone_number) # Check user data
 
-        if data['status'] == 2: # If some erros there in DATA
+        if data['status'] == STATUS_ERROR:
             raise ValueError(str(data['errors']))
 
 
@@ -111,3 +112,10 @@ class Account(BaseModel, DateModel, AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return f'{self.email} | {self.first_name} | {self.last_name}'
+
+    def get_user_by_uuid(uuid):
+        try:
+            user = Account.objects.get(uuid=uuid)
+            return user
+        except:
+            return None
