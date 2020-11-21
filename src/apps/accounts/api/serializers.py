@@ -44,7 +44,6 @@ class AccountRUDSerializer(serializers.ModelSerializer):
 
         return attrs
 
-    # def validate_email(self, value):
 class AccountCreateSerializer(serializers.ModelSerializer):
     password1 = serializers.CharField(
         write_only=True,

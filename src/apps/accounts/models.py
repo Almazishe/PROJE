@@ -34,6 +34,7 @@ class AccountManager(BaseUserManager):
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', True)
         extra_fields.setdefault('is_active', True)
+        extra_fields.setdefault('email_verification', True)
 
         user = self.create_user(
             email=self.normalize_email(email),
@@ -92,7 +93,7 @@ class Account(BaseModel, DateModel, AbstractBaseUser, PermissionsMixin):
     )  
 
     is_active = models.BooleanField(
-        default=True,
+        default=False,
         verbose_name='Is active',
     )  
 

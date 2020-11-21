@@ -8,6 +8,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+
+SITE_HOST = '127.0.0.1:3000'
+SITE_URL = f'http://{SITE_HOST}'
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -19,7 +23,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'corsheaders',
-
+    'six',
 
 
     # APPS
@@ -105,7 +109,12 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',  
     ],
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
-    ]
 }
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'claytemateam@gmail.com'
+EMAIL_HOST_PASSWORD = 'dujtneryirlqvdfd'
